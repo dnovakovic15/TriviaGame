@@ -55,6 +55,7 @@ function callQuestion(questionArray, questionIndex, imageLocation){
     if(animatedQ){
         let imageString = 'assets/images/' + imageLocation +'/q' + questionIndex + '.png';
         $("#q-image").attr('src', imageString);
+        $('#q-image').css('display', 'block');
     }
 }
 
