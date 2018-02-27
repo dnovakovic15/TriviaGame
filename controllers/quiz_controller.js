@@ -1,5 +1,12 @@
 let path = require('path');
-let nodeQ = require('../questions/nodeQuestions.js')
+let nodeQ = require('../questions/nodeQuestions.js');
+let algoQ = require('../questions/algorithmQuestions.js');
+let callbacksQ = require('../questions/callbacks.js');
+let moreQ = require('../questions/more.js');
+let prototypeQ = require('../questions/prototypes.js');
+let scopingQ = require('../questions/scoping.js');
+let terminalQ = require('../questions/terminalQuestions.js');
+
 
 function route(app){
     app.get("/", function(req, res) {
@@ -15,23 +22,22 @@ function route(app){
                 res.send(nodeQ);
                 break;
             case('algorithms'):
-                question = algorithmQ[req.params.question];
-                console.log(req.params.topic);
+                res.send(algoQ);
                 break;
             case('terminal'):
-                question = terminalQ[req.params.question];
+                res.send(terminalQ);
                 break;
             case('callbacks'):
-                question = callbacksQ[req.params.question];
+                res.send(callbacksQ);
                 break;
             case('more'):
-                question = moreQ[req.params.question];
+                res.send(moreQ);
                 break;
             case('prototypes'):
-                question = prototypesQ[req.params.question];
+                res.send(prototypeQ);
                 break;     
             case('scoping'):
-                question = scopingQ[req.params.question];
+                res.send(scopingQ);
                 break;     
         }
     })

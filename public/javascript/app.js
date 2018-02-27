@@ -9,6 +9,18 @@ let imageLocation;
 let timer;
 let topicState;
 
+//Initialize as JS Questions
+$('#header-image').attr('src', '../images/js.jpeg');
+$('body').css('background-image', 'linear-gradient(to top, #ffd61f 0%, #ffd61f 100%)');
+$('.sub-buttons').css('display', 'flex');
+$.ajax({url: "http://localhost:3000/prototypes/0", success: function(result){
+    clearInterval(timer);
+    animatedQ = true;
+    topicState = 'prototypes';
+    questionArray = result;
+    imageLocation = 'prototypes';
+    askQuestion(questionArray, 'prototypes')
+}});
 
 //Start timer. Note the clear interval.
 function askQuestion(questionArray, imageLocation){
@@ -20,7 +32,6 @@ function askQuestion(questionArray, imageLocation){
         $(".2").css("opacity", "0");
         $(".3").css("opacity", "0");
         $(".question").html("You got " + right + " right out of 5 questions!");
-
         let resetButton = $("<button>Restart</button>");
         resetButton.addClass("reset");
         $(".content").append(resetButton);
@@ -35,6 +46,7 @@ function askQuestion(questionArray, imageLocation){
         timeLeft = 60;
         timer = setInterval(function(){
             $(".time").html("Time Remaining: " + (--timeLeft) + " Seconds");
+
             console.log("test");
 
             if(timeLeft <= 0){
@@ -58,7 +70,7 @@ function callQuestion(questionArray, questionIndex, imageLocation){
     $(".3").html(questionArray[questionIndex].answer3);
 
     if(animatedQ){
-        let imageString = 'assets/images/' + imageLocation +'/q' + questionIndex + '.png';
+        let imageString = 'images/' + imageLocation +'/q' + questionIndex + '.png';
         $("#q-image").attr('src', imageString);
         $('#q-image').css('display', 'block');
     }
@@ -122,9 +134,9 @@ function restart(){
 }
 
 //Topic Button Handlers
-
 $('#node').on('click', function(){
-    console.log('node');
+    $('#header-image').attr('src', '../images/node0.png');
+    $('body').css('background-image', 'linear-gradient(to top, #0ba360 0%, #3cba92 100%)');
     $.ajax({url: "http://localhost:3000/node/0", success: function(result){
         clearInterval(timer);
         $('.sub-buttons').css('display', 'none');
@@ -137,63 +149,81 @@ $('#node').on('click', function(){
 });
 
 $('#algorithms').on('click', function(){
-    clearInterval(timer);
-    $('.sub-buttons').css('display', 'none');
-    $('#q-image').css('display', 'none');
-    animatedQ = false;
-    topicState = 'algorithms';
-    questionArray = algorithmQuestions;
-    askQuestion(questionArray, 'none')
+    $('#header-image').attr('src', '../images/algo.jpeg');
+    $('body').css('background-image', 'linear-gradient(to top, #298505 0%, #1b5e03 100%)');
+    $.ajax({url: "http://localhost:3000/algorithms/0", success: function(result){
+        clearInterval(timer);
+        $('.sub-buttons').css('display', 'none');
+        $('#q-image').css('display', 'none');
+        animatedQ = false;
+        topicState = 'algorithms';
+        questionArray = result;
+        askQuestion(questionArray, 'none');
+    }});
 });
 
 $('#terminal').on('click', function(){
-    clearInterval(timer);
-    $('.sub-buttons').css('display', 'none');
-    $('#q-image').css('display', 'none');
-    animatedQ = false;
-    topicState = 'terminal';
-    questionArray = terminalQuestions;
-    askQuestion(questionArray, 'none')
+    $('#header-image').attr('src', '../images/terminal.jpeg');
+    $('body').css('background-image', 'linear-gradient(to top, #000000 0%, #000000 100%)');
+    $.ajax({url: "http://localhost:3000/terminal/0", success: function(result){
+        clearInterval(timer);
+        $('.sub-buttons').css('display', 'none');
+        $('#q-image').css('display', 'none');
+        animatedQ = false;
+        topicState = 'terminal';
+        questionArray = result;
+        askQuestion(questionArray, 'none')
+    }});
 });
 
 $('#javascript').on('click', function(){
+    $('#header-image').attr('src', '../images/js.jpeg');
+    $('body').css('background-image', 'linear-gradient(to top, #ffd61f 0%, #ffd61f 100%)');
     $('.sub-buttons').css('display', 'flex');
 });
 
 $('#prototypes').on('click', function(){
-    clearInterval(timer);
-    animatedQ = true;
-    topicState = 'prototypes';
-    questionArray = prototypeQuestions;
-    imageLocation = 'prototypes';
-    askQuestion(questionArray, 'prototypes')
+    $.ajax({url: "http://localhost:3000/prototypes/0", success: function(result){
+        clearInterval(timer);
+        animatedQ = true;
+        topicState = 'prototypes';
+        questionArray = result;
+        imageLocation = 'prototypes';
+        askQuestion(questionArray, 'prototypes')
+    }});
 });
 
 $('#scoping').on('click', function(){
-    clearInterval(timer);
-    animatedQ = true;
-    questionArray = scopingQuestions;
-    topicState = 'scoping';
-    imageLocation = 'scoping';
-    askQuestion(questionArray, 'scoping')
+    $.ajax({url: "http://localhost:3000/scoping/0", success: function(result){
+        clearInterval(timer);
+        animatedQ = true;
+        questionArray = result;
+        topicState = 'scoping';
+        imageLocation = 'scoping';
+        askQuestion(questionArray, 'scoping');
+    }});
 });
 
 $('#callbacks').on('click', function(){
-    clearInterval(timer);
-    animatedQ = true;
-    topicState = 'callbacks';
-    questionArray = callbacksQuestions;
-    imageLocation = 'callbacks';
-    askQuestion(questionArray, 'callbacks')
+    $.ajax({url: "http://localhost:3000/callbacks/0", success: function(result){
+        clearInterval(timer);
+        animatedQ = true;
+        topicState = 'callbacks';
+        questionArray = result;
+        imageLocation = 'callbacks';
+        askQuestion(questionArray, 'callbacks')
+    }});
 });
 
 $('#more').on('click', function(){
-    clearInterval(timer);
-    animatedQ = true;
-    topicState = 'more';
-    questionArray = moreQuestions;
-    imageLocation = 'more';
-    askQuestion(questionArray, 'more')
+    $.ajax({url: "http://localhost:3000/more/0", success: function(result){
+        clearInterval(timer);
+        animatedQ = true;
+        topicState = 'more';
+        questionArray = result;
+        imageLocation = 'more';
+        askQuestion(questionArray, 'more')
+    }});
 });
 
 
