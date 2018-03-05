@@ -10,7 +10,7 @@ let timer;
 let topicState;
 
 //Initialize as JS Questions
-$('#header-image').attr('src', '../images/js.jpeg');
+$('#header-image').attr('src', '../public/images/js.jpeg');
 $('body').css('background-image', 'linear-gradient(to top, #ffd61f 0%, #ffd61f 100%)');
 $('.sub-buttons').css('display', 'flex');
 $.ajax({url: "http://localhost:3000/prototypes/0", success: function(result){
@@ -26,7 +26,7 @@ $.ajax({url: "http://localhost:3000/prototypes/0", success: function(result){
 function askQuestion(questionArray, imageLocation){
     $('#answers').css('visibility', 'visible');
 
-    if(questionIndex >= questionArray.length){
+    if(questionIndex >= 4){
         $(".0").css("opacity", "0");
         $(".1").css("opacity", "0");
         $(".2").css("opacity", "0");
@@ -63,11 +63,11 @@ function callQuestion(questionArray, questionIndex, imageLocation){
     //     alert("Data: " + data + "\nStatus: " + status);
     // });
 
-    $(".question").html(questionArray[questionIndex].question);
-    $(".0").html(questionArray[questionIndex].answer0);
-    $(".1").html(questionArray[questionIndex].answer1);
-    $(".2").html(questionArray[questionIndex].answer2);
-    $(".3").html(questionArray[questionIndex].answer3);
+    $(".question").html(questionArray.question);
+    $(".0").html(questionArray.answer0);
+    $(".1").html(questionArray.answer1);
+    $(".2").html(questionArray.answer2);
+    $(".3").html(questionArray.answer3);
 
     if(animatedQ){
         let imageString = 'images/' + imageLocation +'/q' + questionIndex + '.png';
@@ -129,13 +129,13 @@ function restart(){
     $(".1").css("opacity", "100");
     $(".2").css("opacity", "100");
     $(".3").css("opacity", "100");
-    askQuestion(questionArray);
+    askQuestion(questionArray, imageLocation);
     $(".reset").remove();
 }
 
 //Topic Button Handlers
 $('#node').on('click', function(){
-    $('#header-image').attr('src', '../images/node0.png');
+    $('#header-image').attr('src', './images/node0.png');
     $('body').css('background-image', 'linear-gradient(to top, #0ba360 0%, #3cba92 100%)');
     $.ajax({url: "http://localhost:3000/node/0", success: function(result){
         clearInterval(timer);
@@ -149,7 +149,7 @@ $('#node').on('click', function(){
 });
 
 $('#algorithms').on('click', function(){
-    $('#header-image').attr('src', '../images/algo.jpeg');
+    $('#header-image').attr('src', './images/algo.jpeg');
     $('body').css('background-image', 'linear-gradient(to top, #298505 0%, #1b5e03 100%)');
     $.ajax({url: "http://localhost:3000/algorithms/0", success: function(result){
         clearInterval(timer);
@@ -163,7 +163,7 @@ $('#algorithms').on('click', function(){
 });
 
 $('#terminal').on('click', function(){
-    $('#header-image').attr('src', '../images/terminal.jpeg');
+    $('#header-image').attr('src', './images/terminal.jpeg');
     $('body').css('background-image', 'linear-gradient(to top, #000000 0%, #000000 100%)');
     $.ajax({url: "http://localhost:3000/terminal/0", success: function(result){
         clearInterval(timer);
@@ -177,7 +177,7 @@ $('#terminal').on('click', function(){
 });
 
 $('#javascript').on('click', function(){
-    $('#header-image').attr('src', '../images/js.jpeg');
+    $('#header-image').attr('src', './images/js.jpeg');
     $('body').css('background-image', 'linear-gradient(to top, #ffd61f 0%, #ffd61f 100%)');
     $('.sub-buttons').css('display', 'flex');
 });
@@ -233,7 +233,7 @@ $(".0").on("click", function(){
     clearInterval(timer);
 
     //I compare correct answer to 0 because this button is the first button. I.E. the 0th button.
-    if(questionArray[questionIndex].correctAnswer == 0){
+    if(questionArray.correctAnswer == 0){
         correct(imageLocation);
     }
     else{
@@ -244,7 +244,7 @@ $(".1").on("click", function(){
     clearInterval(timer);
 
     //I compare correct answer to 1 because this button is the second button. I.E. the 1st button.
-    if(questionArray[questionIndex].correctAnswer == 1){
+    if(questionArray.correctAnswer == 1){
         correct(imageLocation);
     }
     else{
@@ -253,8 +253,8 @@ $(".1").on("click", function(){
 })
 $(".2").on("click", function(){
     clearInterval(timer);
-    console.log(questionArray[questionIndex].correctAnswer);
-    if(questionArray[questionIndex].correctAnswer == 2){
+    console.log(questionArray.correctAnswer);
+    if(questionArray.correctAnswer == 2){
         correct(imageLocation);
     }
     else{
@@ -263,7 +263,7 @@ $(".2").on("click", function(){
 })
 $(".3").on("click", function(){
     clearInterval(timer);
-    if(questionArray[questionIndex].correctAnswer == 3){
+    if(questionArray.correctAnswer == 3){
         correct(imageLocation);
     }
     else{
