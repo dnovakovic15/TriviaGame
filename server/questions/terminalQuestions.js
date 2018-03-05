@@ -13,11 +13,12 @@ function Question(question, answer0, answer1, answer2, answer3, correctAnswer){
 }
 
 let question0terminal = new Question(
-    "What does the following terminal command output if test.txt contains 'Hello World': ",
-    "O(0.5)",
-    "O(n)",
-    "O(logn)",
-    "O(n^2)"
+    "What does the following terminal command output if test.txt contains 'Hello World': cat test.txt",
+    "File Not Found",
+    "Command not recognized",
+    "Nothing",
+    "Hello World",
+    3
 );
 
 let question1terminal = new Question(

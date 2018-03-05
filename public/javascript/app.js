@@ -63,11 +63,11 @@ function callQuestion(questionArray, questionIndex, imageLocation){
     //     alert("Data: " + data + "\nStatus: " + status);
     // });
 
-    $(".question").html(questionArray.question);
-    $(".0").html(questionArray.answer0);
-    $(".1").html(questionArray.answer1);
-    $(".2").html(questionArray.answer2);
-    $(".3").html(questionArray.answer3);
+    $(".question").html(questionArray[questionIndex].question);
+    $(".0").html(questionArray[questionIndex].answer0);
+    $(".1").html(questionArray[questionIndex].answer1);
+    $(".2").html(questionArray[questionIndex].answer2);
+    $(".3").html(questionArray[questionIndex].answer3);
 
     if(animatedQ){
         let imageString = 'images/' + imageLocation +'/q' + questionIndex + '.png';
@@ -233,7 +233,7 @@ $(".0").on("click", function(){
     clearInterval(timer);
 
     //I compare correct answer to 0 because this button is the first button. I.E. the 0th button.
-    if(questionArray.correctAnswer == 0){
+    if(questionArray[questionIndex].correctAnswer == 0){
         correct(imageLocation);
     }
     else{
@@ -244,7 +244,7 @@ $(".1").on("click", function(){
     clearInterval(timer);
 
     //I compare correct answer to 1 because this button is the second button. I.E. the 1st button.
-    if(questionArray.correctAnswer == 1){
+    if(questionArray[questionIndex].correctAnswer == 1){
         correct(imageLocation);
     }
     else{
@@ -253,8 +253,7 @@ $(".1").on("click", function(){
 })
 $(".2").on("click", function(){
     clearInterval(timer);
-    console.log(questionArray.correctAnswer);
-    if(questionArray.correctAnswer == 2){
+    if(questionArray[questionIndex].correctAnswer == 2){
         correct(imageLocation);
     }
     else{
@@ -263,7 +262,7 @@ $(".2").on("click", function(){
 })
 $(".3").on("click", function(){
     clearInterval(timer);
-    if(questionArray.correctAnswer == 3){
+    if(questionArray[questionIndex].correctAnswer == 3){
         correct(imageLocation);
     }
     else{

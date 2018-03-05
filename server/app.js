@@ -37,26 +37,26 @@ app.get('/:topic/:question', function(req, res){
 
     switch(req.params.topic){
         case('node'):
-            question = nodeQ[req.params.question];
+            question = nodeQ;
             break;
         case('algorithms'):
-            question = algorithmQ[req.params.question];
+            question = algorithmQ;
             console.log(req.params.topic);
             break;
         case('terminal'):
-            question = terminalQ[req.params.question];
+            question = terminalQ;
             break;
         case('callbacks'):
-            question = callbacksQ[req.params.question];
+            question = callbacksQ;
             break;
         case('more'):
-            question = moreQ[req.params.question];
+            question = moreQ;
             break;
         case('prototypes'):
-            question = prototypesQ[req.params.question];
+            question = prototypesQ;
             break;     
         case('scoping'):
-            question = scopingQ[req.params.question];
+            question = scopingQ;
             break;     
     }
 
